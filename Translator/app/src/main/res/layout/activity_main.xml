@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.erbaris.android.google.api.translatorapp.MainActivity"/>
+        <import type="android.widget.ArrayAdapter"/>
+
+        <variable name="activity" type="MainActivity" />
+        <variable name="googleApiKey" type="String" />
+        <variable name="fromText" type="String" />
+        <variable name="toText" type="String" />
+        <variable name="fromSpinnerSelectedItemPosition" type="int"/>
+        <variable name="toSpinnerSelectedItemPosition" type="int"/>
+        <variable name="fromSpinnerAdapter" type="ArrayAdapter&lt;String>" />
+        <variable name="toSpinnerAdapter" type="ArrayAdapter&lt;String>" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/edittext_api_key_text_hint"
+                android:text="@={googleApiKey}"
+                android:inputType="text"
+                android:layout_weight="4">
+
+            </EditText>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/button_save_text"
+                android:layout_weight="8"
+                android:onClick="@{_ -> activity.saveButtonClicked()}">
+
+            </Button>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/from_editTextTextMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:hint="@string/edittext_from_text_hint"
+            android:fontFamily="sans-serif"
+            android:text="@={fromText}"
+            android:inputType="textMultiLine" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="4">
+
+            <TextView
+                android:id="@+id/from_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textview_from_text"
+                android:textSize="18sp"
+                android:layout_weight="1"/>
+
+            <Spinner
+                android:id="@+id/from_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:selectedItemPosition="@={fromSpinnerSelectedItemPosition}"
+                android:adapter="@{fromSpinnerAdapter}"
+                android:onItemSelected="@{(p0, p1, pos, p4) -> activity.onFromItemSelected(pos)}"
+                android:textSize="18sp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="4">
+
+            <TextView
+                android:id="@+id/to_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textview_to_text"
+                android:textSize="18sp"
+                android:layout_weight="1"/>
+
+            <Spinner
+                android:id="@+id/to_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:selectedItemPosition="@={toSpinnerSelectedItemPosition}"
+                android:adapter="@{toSpinnerAdapter}"
+                android:onItemSelected="@{(p0, p1, pos, p4) -> activity.onToItemSelected(pos)}"
+                android:textSize="18sp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_translate_text"
+            android:layout_weight="4"
+            android:onClick="@{_ -> activity.translateButtonClicked()}">
+
+        </Button>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <TextView
+                android:id="@+id/to_editTextTextMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@{toText}" />
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

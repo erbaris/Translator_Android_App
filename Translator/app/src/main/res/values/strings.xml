@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BerTranslatorApp</string>
+    <string name="textview_from_text">From:</string>
+    <string name="textview_to_text">To:</string>
+    <string name="edittext_from_text_hint">Enter text to translate</string>
+    <string name="edittext_api_key_text_hint">Enter Google API Key</string>
+    <string name="button_save_text">Save</string>
+    <string name="button_translate_text">Translate</string>
+</resources>
